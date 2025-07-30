@@ -1,0 +1,231 @@
+.app-container {
+  background-color: #f3f3f3;
+  min-height: 100vh;
+}
+
+.result-card {
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.result-card:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}
+
+.result-header {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px solid #e5e5e5;
+}
+
+.result-header h2 {
+  color: #0176d3;
+  margin: 0;
+}
+
+.result-content {
+  padding: 0.5rem 0;
+}
+
+.prompt-section,
+.ai-response-section {
+  background-color: #f8f9fa;
+  border-radius: 6px;
+  padding: 1rem;
+  border-left: 4px solid #0176d3;
+}
+
+.prompt-display,
+.ai-response {
+  background: white;
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+  white-space: pre-wrap;
+  font-family: "Salesforce Sans", Arial, sans-serif;
+  line-height: 1.5;
+  margin-top: 0.5rem;
+}
+
+.ai-response {
+  border-left: 4px solid #06a59a;
+}
+
+/* AI 응답 포매팅 스타일 */
+.ai-response-formatted {
+  background: white;
+  padding: 1rem;
+  border-radius: 4px;
+  border: 1px solid #e5e5e5;
+  border-left: 4px solid #06a59a;
+  font-family: "Salesforce Sans", Arial, sans-serif;
+  line-height: 1.6;
+  margin-top: 0.5rem;
+}
+
+.ai-section {
+  margin-bottom: 1rem;
+}
+
+.ai-section-title {
+  color: #0176d3;
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin: 1rem 0 0.5rem 0;
+  padding-bottom: 0.25rem;
+  border-bottom: 2px solid #e5e5e5;
+}
+
+.ai-numbered-item {
+  display: flex;
+  align-items: flex-start;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: #f8f9fa;
+  border-radius: 6px;
+  border-left: 3px solid #0176d3;
+}
+
+.ai-number {
+  background: #0176d3;
+  color: white;
+  border-radius: 50%;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 0.9rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+}
+
+.ai-bullet-item {
+  display: flex;
+  align-items: flex-start;
+  margin: 0.5rem 0;
+  padding: 0.5rem;
+  background: #f3f8ff;
+  border-radius: 6px;
+  border-left: 3px solid #06a59a;
+}
+
+.ai-bullet {
+  color: #06a59a;
+  font-weight: bold;
+  font-size: 1.2rem;
+  margin-right: 0.75rem;
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.ai-content {
+  flex: 1;
+  color: #3e3e3c;
+  font-size: 0.95rem;
+}
+
+.ai-paragraph {
+  margin: 0.75rem 0;
+  color: #3e3e3c;
+  line-height: 1.6;
+}
+
+/* 첫 번째와 마지막 요소 마진 조정 */
+.ai-response-formatted .ai-section:first-child .ai-section-title {
+  margin-top: 0;
+}
+
+.ai-response-formatted .ai-section:last-child {
+  margin-bottom: 0;
+}
+
+.metadata-section {
+  background-color: #fafbfc;
+  border-radius: 6px;
+  padding: 0.5rem;
+  border: 1px solid #e5e5e5;
+}
+
+.metadata-item {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.875rem;
+}
+
+.metadata-label {
+  font-weight: 600;
+  color: #3e3e3c;
+}
+
+.metadata-value {
+  color: #706e6b;
+}
+
+.welcome-section {
+  background: linear-gradient(135deg, #0176d3 0%, #06a59a 100%);
+  color: white;
+  border-radius: 12px;
+  margin-top: 2rem;
+}
+
+.welcome-icon {
+  color: white;
+  margin-bottom: 1rem;
+}
+
+.welcome-section h2 {
+  color: white;
+}
+
+.welcome-section p {
+  color: rgba(255, 255, 255, 0.9);
+}
+
+/* 로딩 상태 스타일 */
+.slds-spinner_container {
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 8px;
+}
+
+/* 반응형 디자인 */
+@media (max-width: 768px) {
+  .result-card {
+    margin: 0.5rem 0;
+  }
+
+  .metadata-item {
+    font-size: 0.8rem;
+  }
+}
+.container {
+  padding: 1rem;
+}
+
+.section-title {
+  font-weight: bold;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.form-section {
+  margin-bottom: 1.5rem;
+}
+
+.result-section {
+  background-color: #f3f3f3;
+  padding: 1rem;
+  border-radius: 0.25rem;
+  margin-top: 1rem;
+}
+
+.generated-result {
+  white-space: pre-wrap;
+  font-family: "Courier New", monospace;
+}

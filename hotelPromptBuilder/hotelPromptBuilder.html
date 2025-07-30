@@ -1,0 +1,185 @@
+<template>
+  <div class="slds-p-around_medium app-container">
+    <lightning-layout multiple-row="true">
+      <!-- 왼쪽: 입력 폼 -->
+      <lightning-layout-item
+        size="12"
+        medium-device-size="4"
+        padding="horizontal-small"
+      >
+        <c-hotel-prompt-input ongenerate={handleGenerate} onerror={handleError}>
+        </c-hotel-prompt-input>
+        <template lwc:if={error}>
+          <div
+            class="slds-notify slds-notify_alert slds-alert_error"
+            role="alert"
+          >
+            <h2>{error}</h2>
+          </div>
+        </template>
+      </lightning-layout-item>
+
+      <!-- 오른쪽: 결과 표시 -->
+      <lightning-layout-item
+        size="12"
+        medium-device-size="8"
+        padding="horizontal-small"
+      >
+        <template lwc:if={results.length}>
+          <template for:each={results} for:item="result">
+            <div
+              key={result.id}
+              class="slds-box slds-m-bottom_medium result-card"
+            >
+              <div class="result-header">
+                <lightning-icon
+                  icon-name="utility:einstein"
+                  size="small"
+                  class="slds-m-right_small"
+                ></lightning-icon>
+                <h2 class="slds-text-heading_large">{result.title}</h2>
+              </div>
+
+              <div class="result-content">
+                <div class="prompt-section slds-m-bottom_medium">
+                  <h3
+                    class="slds-text-heading_small slds-p-bottom_small slds-border_bottom"
+                  >
+                    <lightning-icon
+                      icon-name="utility:text"
+                      size="x-small"
+                      class="slds-m-right_x-small"
+                    ></lightning-icon>
+                    생성된 프롬프트
+                  </h3>
+                  <div class="prompt-display">{result.generatedPrompt}</div>
+                </div>
+
+                <div class="ai-response-section">
+                  <h3
+                    class="slds-text-heading_small slds-p-bottom_small slds-border_bottom"
+                  >
+                    <lightning-icon
+                      icon-name="utility:chat"
+                      size="x-small"
+                      class="slds-m-right_x-small"
+                    ></lightning-icon>
+                    AI 디자인 아이디어
+                  </h3>
+                  <div class="ai-response-formatted">
+                    <template
+                      for:each={result.parsedSections}
+                      for:item="section"
+                    >
+                      <div key={section.id} class="ai-section">
+                        <template lwc:if={section.isTitle}>
+                          <h4 class="ai-section-title">{section.content}</h4>
+                        </template>
+                        <template lwc:if={section.isNumbered}>
+                          <div class="ai-numbered-item">
+                            <span class="ai-number">{section.number}</span>
+                            <span class="ai-content">{section.content}</span>
+                          </div>
+                        </template>
+                        <template lwc:if={section.isBullet}>
+                          <div class="ai-bullet-item">
+                            <span class="ai-bullet">•</span>
+                            <span class="ai-content">{section.content}</span>
+                          </div>
+                        </template>
+                        <template lwc:if={section.isText}>
+                          <p class="ai-paragraph">{section.content}</p>
+                        </template>
+                      </div>
+                    </template>
+                  </div>
+                </div>
+
+                <!-- 메타데이터 표시 -->
+                <div class="metadata-section slds-m-top_medium">
+                  <lightning-layout
+                    vertical-align="center"
+                    multiple-rows="true"
+                  >
+                    <lightning-layout-item size="3" padding="around-small">
+                      <div class="metadata-item">
+                        <lightning-icon
+                          icon-name="utility:user"
+                          size="x-small"
+                        ></lightning-icon>
+                        <span class="metadata-label">관점:</span>
+                        <span class="metadata-value">{result.persona}</span>
+                      </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3" padding="around-small">
+                      <div class="metadata-item">
+                        <lightning-icon
+                          icon-name="utility:list"
+                          size="x-small"
+                        ></lightning-icon>
+                        <span class="metadata-label">형식:</span>
+                        <span class="metadata-value"
+                          >{result.outputFormat}</span
+                        >
+                      </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3" padding="around-small">
+                      <div class="metadata-item">
+                        <lightning-icon
+                          icon-name="utility:clock"
+                          size="x-small"
+                        ></lightning-icon>
+                        <span class="metadata-label">생성시간:</span>
+                        <span class="metadata-value">{result.timestamp}</span>
+                      </div>
+                    </lightning-layout-item>
+                    <lightning-layout-item size="3" padding="around-small">
+                      <div class="metadata-item">
+                        <lightning-icon
+                          icon-name="utility:building"
+                          size="x-small"
+                        ></lightning-icon>
+                        <span class="metadata-label">프로젝트:</span>
+                        <span class="metadata-value"
+                          >{result.projectSummary}</span
+                        >
+                      </div>
+                    </lightning-layout-item>
+                  </lightning-layout>
+                </div>
+              </div>
+            </div>
+          </template>
+        </template>
+
+        <template lwc:if={isGenerating}>
+          <div class="slds-text-align_center slds-p-around_large">
+            <lightning-spinner size="medium"></lightning-spinner>
+            <p class="slds-m-top_small">
+              AI가 디자인 아이디어를 생성하고 있습니다...
+            </p>
+          </div>
+        </template>
+
+        <template lwc:if={showWelcome}>
+          <div
+            class="welcome-section slds-text-align_center slds-p-around_large"
+          >
+            <lightning-icon
+              icon-name="utility:einstein"
+              size="large"
+              class="welcome-icon"
+            ></lightning-icon>
+            <h2 class="slds-text-heading_medium slds-m-bottom_small">
+              AI 디자인 아이디어 생성기에 오신 것을 환영합니다!
+            </h2>
+            <p class="slds-text-body_regular slds-text-color_weak">
+              왼쪽 폼을 작성하고 'AI 디자인 아이디어 생성' 버튼을 클릭하여
+              시작하세요.
+            </p>
+          </div>
+        </template>
+      </lightning-layout-item>
+    </lightning-layout>
+  </div>
+</template>

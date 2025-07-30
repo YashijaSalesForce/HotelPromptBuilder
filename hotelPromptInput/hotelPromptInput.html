@@ -1,0 +1,150 @@
+<template>
+  <div class="slds-card">
+    <div class="slds-card__header slds-grid">
+      <header class="slds-media slds-media_center slds-has-flexi-truncate">
+        <div class="slds-media__body">
+          <h2 class="slds-card__header-title">
+            <lightning-icon
+              icon-name="utility:einstein"
+              size="small"
+              class="slds-m-right_small"
+            ></lightning-icon>
+            <span>디자인팀 AI Prompt Builder</span>
+          </h2>
+        </div>
+      </header>
+    </div>
+    <div class="slds-card__body slds-card__body_inner">
+      <!-- 페르소나 및 출력 형식 선택 -->
+      <div class="slds-grid slds-wrap slds-gutters">
+        <div class="slds-col slds-size_1-of-2">
+          <lightning-combobox
+            name="persona"
+            label="분석 관점 (페르소나)"
+            value={persona}
+            placeholder="분석 관점 선택..."
+            options={personaOptions}
+            onchange={handlePersonaChange}
+            required
+            class="slds-m-bottom_small"
+          >
+          </lightning-combobox>
+        </div>
+        <div class="slds-col slds-size_1-of-2">
+          <lightning-combobox
+            name="outputFormat"
+            label="정보 포맷 (결과물)"
+            value={outputFormat}
+            placeholder="정보 포맷 선택..."
+            options={formatOptions}
+            onchange={handleFormatChange}
+            required
+            class="slds-m-bottom_small"
+          >
+          </lightning-combobox>
+        </div>
+      </div>
+
+      <!-- 프로젝트 개요 섹션 -->
+      <div class="slds-section slds-is-open slds-m-top_medium">
+        <h3
+          class="slds-text-heading_medium slds-section__title slds-theme_shade"
+        >
+          <lightning-icon
+            icon-name="utility:building"
+            size="x-small"
+            class="slds-m-right_x-small"
+          ></lightning-icon>
+          프로젝트 개요
+        </h3>
+        <div class="slds-section__content slds-p-top_medium">
+          <div class="slds-grid slds-wrap slds-gutters">
+            <div class="slds-col slds-size_1-of-2">
+              <lightning-input
+                type="text"
+                label="호텔 컨셉/등급"
+                placeholder="예: 5성급 럭셔리, 부티크 호텔"
+                value={hotelConcept}
+                onchange={handleConceptChange}
+                class="slds-m-bottom_small"
+              >
+              </lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+              <lightning-input
+                type="text"
+                label="위치"
+                placeholder="예: 제주 애월읍, 서울 성수동"
+                value={location}
+                onchange={handleLocationChange}
+                class="slds-m-bottom_small"
+              >
+              </lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+              <lightning-input
+                type="text"
+                label="규모"
+                placeholder="예: 50실, 300실"
+                value={scale}
+                onchange={handleScaleChange}
+                class="slds-m-bottom_small"
+              >
+              </lightning-input>
+            </div>
+            <div class="slds-col slds-size_1-of-2">
+              <lightning-input
+                type="text"
+                label="핵심 타겟 고객"
+                placeholder="예: 20-30대 커플, 외국인 비즈니스 고객"
+                value={target}
+                onchange={handleTargetChange}
+                class="slds-m-bottom_small"
+              >
+              </lightning-input>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 핵심 질문 섹션 -->
+      <div class="slds-section slds-is-open slds-m-top_medium">
+        <h3
+          class="slds-text-heading_medium slds-section__title slds-theme_shade"
+        >
+          <lightning-icon
+            icon-name="utility:question"
+            size="x-small"
+            class="slds-m-right_x-small"
+          ></lightning-icon>
+          핵심 질문
+        </h3>
+        <div class="slds-section__content slds-p-top_medium">
+          <lightning-textarea
+            label="지금 가장 궁금한 질문을 입력하세요"
+            placeholder="예: 이 지역의 특성을 살리면서 고객에게 새로운 경험을 줄 수 있는 로비 디자인 아이디어는?"
+            value={coreQuestion}
+            onchange={handleQuestionChange}
+            required
+            rows="4"
+          >
+          </lightning-textarea>
+        </div>
+      </div>
+
+      <!-- 생성 버튼 -->
+      <div class="generate-button-container">
+        <lightning-button
+          variant="brand"
+          label="AI 디자인 아이디어 생성"
+          title="AI를 통해 디자인 아이디어를 생성합니다"
+          onclick={handleGenerateClick}
+          icon-name="utility:einstein"
+          icon-position="left"
+          class="slds-size_large"
+        >
+        </lightning-button>
+      </div>
+    </div>
+  </div>
+</template>

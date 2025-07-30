@@ -1,0 +1,111 @@
+.slds-section__title {
+  background-color: #f3f3f3;
+  padding: 0.5rem 1rem;
+  border-left: 4px solid #1589ee;
+  margin-bottom: 1rem;
+}
+
+.slds-card__header-title {
+  font-weight: bold;
+  color: #1589ee;
+}
+
+.slds-size_large {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+.slds-card {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow-y: auto;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.slds-card__body {
+  padding: 1.5rem;
+}
+
+.slds-section {
+  border: 1px solid #e5e5e5;
+  border-radius: 6px;
+  background: white;
+}
+
+.slds-section__content {
+  background: #fafbfc;
+  border-radius: 0 0 6px 6px;
+}
+
+/* 입력 필드 스타일 개선 */
+lightning-input,
+lightning-textarea,
+lightning-combobox {
+  --slds-c-input-shadow-focus: 0 0 0 2px #1589ee;
+}
+
+/* 버튼 스타일 개선 */
+.slds-size_large {
+  padding: 1rem 2rem !important;
+  font-size: 1.1rem !important;
+  font-weight: bold !important;
+  background: linear-gradient(135deg, #1589ee 0%, #06a59a 100%) !important;
+  border: none !important;
+  color: white !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+.slds-size_large:hover {
+  background: linear-gradient(135deg, #0c7cd5 0%, #057a73 100%) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+.slds-size_large:active {
+  transform: translateY(0) !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Lightning 버튼 기본 스타일 재정의 */
+lightning-button[class*="slds-size_large"] .slds-button {
+  background: linear-gradient(135deg, #1589ee 0%, #06a59a 100%) !important;
+  border: none !important;
+  color: white !important;
+  padding: 1rem 2rem !important;
+  font-size: 1.1rem !important;
+  font-weight: bold !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  transition: all 0.3s ease !important;
+}
+
+lightning-button[class*="slds-size_large"] .slds-button:hover {
+  background: linear-gradient(135deg, #0c7cd5 0%, #057a73 100%) !important;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15) !important;
+  transform: translateY(-1px) !important;
+}
+
+/* 버튼 컨테이너 스타일 */
+.generate-button-container {
+  text-align: center;
+  padding: 2rem 1rem;
+  background: linear-gradient(
+    135deg,
+    rgba(21, 137, 238, 0.05) 0%,
+    rgba(6, 165, 154, 0.05) 100%
+  );
+  border-radius: 8px;
+  margin-top: 1rem;
+}
+
+/* 반응형 */
+@media (max-width: 768px) {
+  .slds-card {
+    position: static;
+    max-height: none;
+  }
+}
