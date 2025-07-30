@@ -30,3 +30,7 @@ https://github.com/user-attachments/assets/a54ff91b-2fea-4625-9eb7-7568d3ffd41a
 - **(선택) 외부 AI 서비스 연동**
 
 ---
+ 🙌 기여/문의
+
+- 이슈 및 PR 환영합니다!
+- 문의: alex98110658@gmail.com
